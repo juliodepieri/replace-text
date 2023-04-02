@@ -26,7 +26,7 @@
       "active": true,
       "icon": [
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.jdp.replace-word",
       "targets": "all"
     },
     "security": {
