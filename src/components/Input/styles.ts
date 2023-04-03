@@ -64,6 +64,7 @@ export const Content = styled.div<ContainerProps>`
     border: 0;
     color: ${(props) => props.theme.inputText};
     padding: 16px 0 16px 16px;
+    border-radius: 10px;
 
     &::placeholder {
       color: ${(props) => props.theme.inputDisabled};
@@ -72,6 +73,18 @@ export const Content = styled.div<ContainerProps>`
     :disabled {
       color: ${(props) => props.theme.inputDisabled};
     }
+  }
+
+  -webkit-text-fill-color {
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px ${(props) => props.theme.inputBackground}
+      inset !important;
+    -webkit-text-fill-color: ${(props) => props.theme.inputText} !important;
   }
 
   svg {
