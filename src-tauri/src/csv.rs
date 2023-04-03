@@ -1,7 +1,6 @@
 use std::fs::{self, OpenOptions};
 use std::io::prelude::*;
 use std::path::{Path, PathBuf};
-use std::{thread, time};
 
 use tauri::Window;
 
@@ -63,10 +62,6 @@ pub async fn change_word(
                 },
             )
             .unwrap();
-
-        let ten_millis = time::Duration::from_secs(1);
-
-        thread::sleep(ten_millis);
     }
     Ok(result)
 }
