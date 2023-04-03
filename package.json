@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "start": "npm run tauri dev",
-    "win32": "tauri build --target x86_64-pc-windows-msvc"
+    "win64": "tauri build --target x86_64-pc-windows-msvc"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.11",
