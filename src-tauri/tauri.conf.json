@@ -25,6 +25,7 @@
     "bundle": {
       "active": true,
       "icon": [
+        "icons/icon.ico"
       ],
       "identifier": "com.jdp.replace-word",
       "targets": "all"
