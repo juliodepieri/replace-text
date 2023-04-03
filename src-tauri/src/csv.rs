@@ -22,38 +22,20 @@ pub async fn change_word(
     let mut processed: Vec<String> = Vec::new();
 
     for file_path in &file_paths {
-        let contents = fs::read_to_string(file_path)?;
-        let new = contents.replace(&old_word, &new_word);
-        dbg!(&contents, &new);
+        let content = fs::read_to_string(file_path)?;
+        let new_content = content.replace(&old_word, &new_word);
 
         let mut file = OpenOptions::new()
             .write(true)
             .truncate(true)
             .open(file_path)
             .unwrap();
-        file.write(new.as_bytes()).unwrap();
+        file.write(new_content.as_bytes()).unwrap();
         file.flush()?;
 
-        println!(
-            "file path renamed :: {}",
-            file_path.replace(&old_word, &new_word)
-        );
+        result.push(rename_file(&file_path, &new_word, &old_word)?);
+        processed.push(String::from(file_path));
 
-        let path1 = Path::new(file_path);
-
-        let new_name = path1
-            .file_name()
-            .unwrap()
-            .to_str()
-            .unwrap()
-            .replace(&old_word, &new_word);
-        let path2 = change_file_name(path1, &new_name);
-        dbg!(&path1, &path2);
-
-        result.push(path2.as_path().display().to_string());
-        fs::rename(path1, path2)?;
-
-        processed.push(path1.display().to_string());
         window
             .emit(
                 "FILE_REPLACE_WORD_PROGRESS",
@@ -64,6 +46,20 @@ pub async fn change_word(
             .unwrap();
     }
     Ok(result)
+}
+
+fn rename_file(file_path: &String, new_word: &String, old_word: &String) -> Result<String, Error> {
+    let path1 = Path::new(file_path);
+    let new_name = path1
+        .file_name()
+        .unwrap()
+        .to_str()
+        .unwrap()
+        .replace(old_word, new_word);
+    let path2 = change_file_name(path1, &new_name);
+
+    fs::rename(&path1, &path2)?;
+    Ok(path2.as_path().display().to_string())
 }
 
 fn change_file_name(path: impl AsRef<Path>, name: &str) -> PathBuf {
