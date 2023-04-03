@@ -34,30 +34,6 @@ export const Actions = styled.div`
   align-items: center;
   align-content: center;
   height: 100px;
-
-  button {
-    cursor: pointer;
-    padding: 10px 25px 10px 25px;
-    border: 1px solid ${(props) => props.theme.primary};
-    border-radius: 10px;
-    color: ${(props) => props.theme.primary};
-    background: transparent;
-    transition: color 0.2s;
-
-    svg {
-      margin-right: 16px;
-    }
-
-    &:hover {
-      box-shadow: 0 0 8px ${(props) => props.theme.primary};
-    }
-
-    :disabled {
-      box-shadow: none;
-      color: ${(props) => props.theme.textDisable};
-      border: 1px solid ${(props) => props.theme.inputDisabled};
-    }
-  }
 `;
 
 export default Container;

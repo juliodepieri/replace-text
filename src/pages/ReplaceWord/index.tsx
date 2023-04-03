@@ -10,6 +10,7 @@ import { useToast } from '../../hooks/toast';
 import DefaultLayout from '../layouts/DefaultLayout';
 import { Container, Form, Actions, Content } from './styles';
 import ImportFileArea from '../../components/ImportFileArea';
+import Button from '../../components/Button';
 
 export type FormValues = {
   oldWord?: string;
@@ -139,9 +140,9 @@ const ReplaceWord = () => {
             disabled={executing}
           />
           <Actions>
-            <button type="submit" disabled={executing}>
+            <Button type="submit" disabled={executing} isLoading={executing}>
               Execute
-            </button>
+            </Button>
           </Actions>
         </Form>
       </Container>
