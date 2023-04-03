@@ -19,7 +19,12 @@ module.exports = {
   },
   plugins: ['prettier', 'react', '@typescript-eslint', 'react-hooks', 'import'],
   rules: {
-    'prettier/prettier': ['error'],
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'import/no-extraneous-dependencies': 'off',
