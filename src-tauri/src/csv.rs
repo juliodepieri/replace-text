@@ -12,10 +12,10 @@ struct Payload<'a> {
 }
 
 #[tauri::command]
-pub async fn change_word(
+pub async fn replace_text(
     file_paths: Vec<String>,
-    old_word: String,
-    new_word: String,
+    find_text: String,
+    replace_with: String,
     window: Window,
 ) -> Result<Vec<String>, Error> {
     let mut result: Vec<String> = Vec::new();
@@ -23,7 +23,7 @@ pub async fn change_word(
 
     for file_path in &file_paths {
         let content = fs::read_to_string(file_path)?;
-        let new_content = content.replace(&old_word, &new_word);
+        let new_content = content.replace(&find_text, &replace_with);
 
         let mut file = OpenOptions::new()
             .write(true)
@@ -33,12 +33,12 @@ pub async fn change_word(
         file.write(new_content.as_bytes()).unwrap();
         file.flush()?;
 
-        result.push(rename_file(&file_path, &new_word, &old_word)?);
+        result.push(rename_file(&file_path, &replace_with, &find_text)?);
         processed.push(String::from(file_path));
 
         window
             .emit(
-                "FILE_REPLACE_WORD_PROGRESS",
+                "FILE_REPLACE_TEXT_PROGRESS",
                 Payload {
                     processed: &processed,
                 },
@@ -48,14 +48,18 @@ pub async fn change_word(
     Ok(result)
 }
 
-fn rename_file(file_path: &String, new_word: &String, old_word: &String) -> Result<String, Error> {
+fn rename_file(
+    file_path: &String,
+    find_text: &String,
+    replace_with: &String,
+) -> Result<String, Error> {
     let path1 = Path::new(file_path);
     let new_name = path1
         .file_name()
         .unwrap()
         .to_str()
         .unwrap()
-        .replace(old_word, new_word);
+        .replace(replace_with, find_text);
     let path2 = change_file_name(path1, &new_name);
 
     fs::rename(&path1, &path2)?;

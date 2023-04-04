@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "replace-word",
+    "productName": "replace-text",
     "version": "0.0.0"
   },
   "tauri": {
@@ -27,7 +27,7 @@
       "icon": [
         "icons/icon.ico"
       ],
-      "identifier": "com.jdp.replace-word",
+      "identifier": "com.jdp.replace-text",
       "targets": "all"
     },
     "security": {
@@ -40,7 +40,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "replace-word",
+        "title": "replace-text",
         "width": 800,
         "height": 600
       }

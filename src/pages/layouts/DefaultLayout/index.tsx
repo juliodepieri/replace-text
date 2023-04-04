@@ -10,7 +10,6 @@ export type DefaultLayoutProps = {
 const DefaultLayout = ({ children = undefined }: DefaultLayoutProps) => {
   return (
     <Container>
-      <Header />
       <Body>{children}</Body>
     </Container>
   );

@@ -13,8 +13,8 @@ import ImportFileArea from '../../components/ImportFileArea';
 import Button from '../../components/Button';
 
 export type FormValues = {
-  oldWord?: string;
-  newWord?: string;
+  findText?: string;
+  replaceWith?: string;
 };
 
 type ProgressPayload = {
@@ -22,11 +22,11 @@ type ProgressPayload = {
 };
 
 const schema = Yup.object().shape({
-  oldWord: Yup.string().required('Old Word is required'),
-  newWord: Yup.string().required('New Word is required'),
+  findText: Yup.string().required('Find text is required'),
+  replaceWith: Yup.string().required('Replace with is required'),
 });
 
-const ReplaceWord = () => {
+const ReplaceText = () => {
   const [executing, setExecuting] = useState<boolean>(false);
   const [filesSelected, setFilesSelected] = useState<Set<string>>(new Set());
   const [processedFiles, setProcessedFiles] = useState<Set<string>>(new Set());
@@ -37,8 +37,8 @@ const ReplaceWord = () => {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      oldWord: '',
-      newWord: '',
+      findText: '',
+      replaceWith: '',
     },
     resolver: yupResolver(schema, { abortEarly: false }),
   });
@@ -70,17 +70,17 @@ const ReplaceWord = () => {
       }
 
       const listenProgress = await appWindow.listen<ProgressPayload>(
-        'FILE_REPLACE_WORD_PROGRESS',
+        'FILE_REPLACE_TEXT_PROGRESS',
         ({ event, payload }) => {
           setProcessedFiles(new Set(payload.processed));
         }
       );
 
       setExecuting(true);
-      invoke('change_word', {
+      invoke('replace_text', {
         filePaths: [...filesSelected],
-        oldWord: data.oldWord,
-        newWord: data.newWord,
+        find_text: data.findText,
+        replace_with: data.replaceWith,
       })
         .then((result) => {
           if (Array.isArray(result)) {
@@ -114,19 +114,19 @@ const ReplaceWord = () => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Content>
             <Input
-              {...register('oldWord')}
+              {...register('findText')}
               type="text"
-              error={errors.oldWord?.message}
-              placeholder="old Word"
-              label="Old Word"
+              error={errors.findText?.message}
+              placeholder="Find Text"
+              label="Find Text"
               disabled={executing}
             ></Input>
             <Input
-              {...register('newWord')}
+              {...register('replaceWith')}
               type="text"
-              error={errors.newWord?.message}
-              placeholder="new Word"
-              label="New Word"
+              error={errors.replaceWith?.message}
+              placeholder="Replace With"
+              label="Replace With"
               disabled={executing}
             ></Input>
           </Content>
@@ -151,4 +151,4 @@ const ReplaceWord = () => {
   );
 };
 
-export default ReplaceWord;
+export default ReplaceText;

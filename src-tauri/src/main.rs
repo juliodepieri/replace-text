@@ -2,12 +2,12 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 mod csv;
-use crate::csv::change_word;
+use crate::csv::replace_text;
 mod error;
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![change_word])
+        .invoke_handler(tauri::generate_handler![replace_text])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
