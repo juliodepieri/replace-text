@@ -1,12 +1,21 @@
-import React, { useState, useCallback, forwardRef, Ref, useRef } from 'react';
+import {
+  useState,
+  useCallback,
+  forwardRef,
+  Ref,
+  useRef,
+  ComponentType,
+  FocusEvent,
+  ChangeEvent,
+} from 'react';
 
 import { IconBaseProps } from 'react-icons';
 import { FiAlertCircle } from 'react-icons/fi';
-
+import { Tooltip } from 'react-tooltip';
 import { Label, Container, Content, ErrorMsg } from './styles';
 
 type InputProps = {
-  icon?: React.ComponentType<IconBaseProps>;
+  icon?: ComponentType<IconBaseProps>;
   error?: string;
   label?: string;
   name?: string;
@@ -14,11 +23,9 @@ type InputProps = {
   placeholder?: string;
   defaultValue?: string;
   disabled?: boolean;
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => Promise<void | boolean>;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => Promise<void | boolean>;
-  onChange?: (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => Promise<void | boolean>;
+  onFocus?: (e: FocusEvent<HTMLInputElement>) => Promise<void | boolean>;
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => Promise<void | boolean>;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => Promise<void | boolean>;
   inputRef?: Ref<unknown>;
 };
 
@@ -109,9 +116,17 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           />
 
           {error && (
-            <ErrorMsg title={error}>
-              <FiAlertCircle color="#c53030" size={20} />
-            </ErrorMsg>
+            <>
+              <ErrorMsg
+                data-tooltip-id={'error-' + name}
+                data-tooltip-content={error}
+                data-tooltip-place="bottom"
+                data-tooltip-variant="error"
+              >
+                <FiAlertCircle color="#c53030" size={20} />
+              </ErrorMsg>
+              <Tooltip id={'error-' + name} />
+            </>
           )}
         </Content>
       </Container>

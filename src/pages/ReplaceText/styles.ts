@@ -5,22 +5,24 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 100%;
+  padding: 4px;
 `;
 
 export const Form = styled.form`
   display: flex;
-  gap: 20px;
+  row-gap: 12px;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 80%;
-  margin-top: 32px;
+  justify-content: flex-start;
+  width: 100%;
   height: 100%;
+  padding: 16px;
 `;
 
-export const Content = styled.div`
+export const InputContainer = styled.div`
   display: flex;
-  gap: 20px;
+  column-gap: 20px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -28,12 +30,19 @@ export const Content = styled.div`
   height: 10%;
 `;
 
+export const ImportArea = styled.div`
+  height: 80%;
+  width: 100%;
+`;
+
 export const Actions = styled.div`
   display: flex;
-  gap: 20px;
   align-items: center;
   align-content: center;
-  height: 100px;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+  height: 10%;
 `;
 
 export default Container;

@@ -3,48 +3,16 @@ import styled, { css } from 'styled-components';
 
 export const UploadLayout = styled.div`
   display: flex;
+  row-gap: 10px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  grid-gap: 1rem;
   width: 100%;
   height: 100%;
-
-  h3 {
-    color: ${(props) => props.theme.inputText};
-  }
 `;
 
-export const Actions = styled.div`
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  align-content: center;
-  margin-top: 16px;
-
-  button {
-    cursor: pointer;
-    padding: 10px 25px 10px 25px;
-    border: 1px solid ${(props) => props.theme.primary};
-    border-radius: 10px;
-    color: ${(props) => props.theme.primary};
-    background: transparent;
-    transition: color 0.2s;
-
-    svg {
-      margin-right: 16px;
-    }
-
-    &:hover {
-      box-shadow: 0 0 8px ${(props) => props.theme.primary};
-    }
-
-    :disabled {
-      box-shadow: none;
-      color: ${(props) => props.theme.textDisable};
-      border: 1px solid ${(props) => props.theme.inputDisabled};
-    }
-  }
+export const Title = styled.h3`
+  color: ${(props) => props.theme.inputText};
 `;
 
 export const FilesArea = styled.div`
@@ -53,7 +21,7 @@ export const FilesArea = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 90%;
   border: 1px dashed ${(props) => props.theme.inputText};
   border-radius: 10px;
   padding: 5px;
@@ -76,14 +44,14 @@ export const CloseButton = styled.button`
 `;
 export const FileList = styled.div`
   display: flex;
-  gap: 6px;
+  gap: 4px;
   align-items: center;
   align-content: center;
   flex-direction: column;
   color: ${(props) => props.theme.inputText};
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 10px;
+  padding: 4px;
   height: 100%;
   width: 100%;
 `;
@@ -94,7 +62,7 @@ export const FileRow = styled.div<{ disabled: boolean; isProcessed: boolean }>`
   align-items: center;
   color: ${(props) => props.theme.inputText};
   background: none;
-  padding: 6px;
+  padding: 4px;
   border-radius: 10px;
   width: 100%;
   border: 1px solid ${(props) => props.theme.inputBorder};
@@ -110,6 +78,16 @@ export const FileRow = styled.div<{ disabled: boolean; isProcessed: boolean }>`
       border: 1px solid ${(props) => props.theme.success};
       background-color: ${(props) => darken(0.15, props.theme.success)};
     `}
+`;
+
+export const Actions = styled.div`
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-top: 8px;
+  width: 100%;
 `;
 
 export default UploadLayout;

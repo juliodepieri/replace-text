@@ -4,6 +4,7 @@ import GlobalStyle from './styles/GlobalStyle';
 import DarkTheme from './styles/DarkTheme';
 import AppProvider from './hooks';
 import AllRoutes from './router';
+import 'react-tooltip/dist/react-tooltip.css';
 
 function App() {
   return (

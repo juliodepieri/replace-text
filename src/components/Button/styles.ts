@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 const animateSpin = keyframes`
   0% {
@@ -10,7 +10,7 @@ const animateSpin = keyframes`
   }
 `;
 
-export const StylizedButton = styled.button`
+export const StylizedButton = styled.button<{ isLoading?: boolean }>`
   cursor: pointer;
   padding: 10px 25px 10px 25px;
   border: 1px solid ${(props) => props.theme.primary};
@@ -28,9 +28,13 @@ export const StylizedButton = styled.button`
   }
 
   :disabled {
-    box-shadow: none;
-    color: ${(props) => props.theme.textDisable};
-    border: 1px solid ${(props) => props.theme.inputDisabled};
+    ${(props) =>
+      !props.isLoading &&
+      css`
+        box-shadow: none;
+        color: ${(props) => props.theme.textDisable};
+        border: 1px solid ${(props) => props.theme.inputDisabled};
+      `}
   }
 `;
 

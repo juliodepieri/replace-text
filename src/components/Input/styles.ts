@@ -1,6 +1,5 @@
 import { lighten } from 'polished';
 import styled, { css, keyframes } from 'styled-components';
-import Tooltip from '../Tooltip';
 
 interface ContainerProps {
   isFocused: boolean;
@@ -63,7 +62,7 @@ export const Content = styled.div<ContainerProps>`
     background: transparent;
     border: 0;
     color: ${(props) => props.theme.inputText};
-    padding: 16px 0 16px 16px;
+    padding: 12px 0 12px 12px;
     border-radius: 10px;
 
     &::placeholder {
@@ -88,14 +87,15 @@ export const Content = styled.div<ContainerProps>`
   }
 
   svg {
-    margin-right: 16px;
+    margin-right: 12px;
   }
 `;
 
-export const ErrorMsg = styled(Tooltip)`
+export const ErrorMsg = styled.div`
   height: 20px;
-  margin-left: 16px;
+  margin-left: 12px;
   margin-right: 6px;
+  cursor: pointer;
 
   svg {
     margin: 0;

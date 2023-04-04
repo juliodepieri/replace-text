@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div<{ hasMessages: boolean }>`
+  display: ${(props) => (props.hasMessages ? 'block' : 'none')};
   position: fixed;
   right: 0;
   top: 0;

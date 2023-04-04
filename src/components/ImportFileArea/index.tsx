@@ -8,7 +8,9 @@ import {
   FileList,
   FileRow,
   FilesArea,
+  Title,
 } from './styles';
+import Button from '../Button';
 
 type Props = {
   disabled?: boolean;
@@ -70,7 +72,7 @@ const ImportFileArea = ({
 
   return (
     <UploadLayout>
-      <h3>Choose Files</h3>
+      <Title>Choose Files</Title>
       <FilesArea>
         <FileList>
           {[...selectedFiles]?.map((f, i) => (
@@ -93,12 +95,12 @@ const ImportFileArea = ({
           ))}
         </FileList>
         <Actions>
-          <button type="button" onClick={handleFileEvent} disabled={disabled}>
+          <Button type="button" onClick={handleFileEvent} disabled={disabled}>
             Browse
-          </button>
-          <button type="button" onClick={onFileClear} disabled={disabled}>
+          </Button>
+          <Button type="button" onClick={onFileClear} disabled={disabled}>
             Clear
-          </button>
+          </Button>
         </Actions>
       </FilesArea>
     </UploadLayout>

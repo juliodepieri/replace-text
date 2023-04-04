@@ -19,7 +19,7 @@ const ToastContainer = ({ messages, onRemoveToast }: ToastContainerProps) => {
   });
 
   return (
-    <Container>
+    <Container id="toast-container" hasMessages={messages?.length > 0}>
       {messagesWithTransitions((styles, item) => (
         <Toast
           key={item.id}

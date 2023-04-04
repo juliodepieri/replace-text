@@ -1,10 +1,9 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
-import Header from '../../../components/Header';
 import { Body, Container } from './styles';
 
 export type DefaultLayoutProps = {
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 const DefaultLayout = ({ children = undefined }: DefaultLayoutProps) => {

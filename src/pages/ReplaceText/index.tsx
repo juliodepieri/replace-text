@@ -8,7 +8,7 @@ import { appWindow } from '@tauri-apps/api/window';
 import Input from '../../components/Input';
 import { useToast } from '../../hooks/toast';
 import DefaultLayout from '../layouts/DefaultLayout';
-import { Container, Form, Actions, Content } from './styles';
+import { Container, Form, Actions, InputContainer, ImportArea } from './styles';
 import ImportFileArea from '../../components/ImportFileArea';
 import Button from '../../components/Button';
 
@@ -79,8 +79,8 @@ const ReplaceText = () => {
       setExecuting(true);
       invoke('replace_text', {
         filePaths: [...filesSelected],
-        find_text: data.findText,
-        replace_with: data.replaceWith,
+        findText: data.findText,
+        replaceWith: data.replaceWith,
       })
         .then((result) => {
           if (Array.isArray(result)) {
@@ -112,7 +112,7 @@ const ReplaceText = () => {
     <DefaultLayout>
       <Container id="container">
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <Content>
+          <InputContainer>
             <Input
               {...register('findText')}
               type="text"
@@ -129,24 +129,25 @@ const ReplaceText = () => {
               label="Replace With"
               disabled={executing}
             ></Input>
-          </Content>
+          </InputContainer>
 
-          <ImportFileArea
-            onFileSelect={onFileSelect}
-            onClear={onFilesClear}
-            onRemove={onFileRemove}
-            selectedFiles={filesSelected}
-            processedFiles={processedFiles}
-            disabled={executing}
-          />
+          <ImportArea>
+            <ImportFileArea
+              onFileSelect={onFileSelect}
+              onClear={onFilesClear}
+              onRemove={onFileRemove}
+              selectedFiles={filesSelected}
+              processedFiles={processedFiles}
+              disabled={executing}
+            />
+          </ImportArea>
           <Actions>
-            <Button type="submit" disabled={executing} isLoading={executing}>
+            <Button type="submit" isLoading={executing} disabled={executing}>
               Execute
             </Button>
           </Actions>
         </Form>
       </Container>
-      {/* <ReactTooltip effect="solid" /> */}
     </DefaultLayout>
   );
 };
