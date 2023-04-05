@@ -10,8 +10,10 @@
 
 ## Description
 
-<p>Desktop app to replace text in txt/csv files</p>
+<p>Desktop application to replace text in txt/csv files</p>
 
-<p algin="center">
-  <img with="460" height="300" src=".readme/replace-text.gif">
+## App
+
+<p align="center">
+  <img height="500" src=".readme/replace-text.gif">
 </p>
