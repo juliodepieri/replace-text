@@ -32,12 +32,12 @@ const ImportFileArea = ({
   const handleFileEvent = useCallback(async () => {
     try {
       const selectedPath = await open({
-        title: 'Open CSV Files',
+        title: 'Open CSV/TXT Files',
         multiple: true,
         filters: [
           {
-            name: 'csv',
-            extensions: ['csv'],
+            name: 'csv|txt',
+            extensions: ['csv', 'txt'],
           },
         ],
       });

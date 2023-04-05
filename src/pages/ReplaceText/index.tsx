@@ -89,7 +89,7 @@ const ReplaceText = () => {
           addToast({
             type: 'success',
             title: 'success',
-            description: 'process completed',
+            description: 'Process completed',
           });
         })
         .catch((e) => {
