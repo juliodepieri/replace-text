@@ -1,5 +1,5 @@
 use std::fs::{self, OpenOptions};
-use std::io::prelude::*;
+use std::io::prelude::Write;
 use std::path::{Path, PathBuf};
 
 use tauri::Window;

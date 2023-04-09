@@ -1,11 +1,15 @@
 [package]
-name = "replace-text"
+name = "replace_text_app"
 version = "1.0.0"
 description = "Replace Text App"
 authors = ["julio de Pieri"]
 license = "MIT"
 repository = "https://github.com/juliodepieri/replace-text"
 edition = "2021"
+
+[[bin]]
+name = "replace_text_app"
+src = "src/main.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
